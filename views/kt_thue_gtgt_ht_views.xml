@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_kt_thue_gtgt_ht_form" model="ir.ui.view">
+            <field name="name">kt.khau.tru.thue.gtgt.ht.form</field>
+            <field name="model">kt.khau.tru.thue.gtgt.ht</field>
+            <field name="arch" type="xml">
+                <form string="Hạch toán khấu trừ thuế GTGT">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="kt_id"/>
+                                <field name="dien_giai"/>
+                                <field name="tk_no_id"/>
+                                <field name="ma_tk_no"/>
+                                <field name="ten_tk_no"/>
+                            </group>
+                            <group>
+                                <field name="tk_co_id" options="{'no_create': True, 'no_open': True}"/>
+                                <field name="ma_tk_co"/>
+                                <field name="ten_tk_co"/>
+                                <field name="so_tien"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_kt_thue_gtgt_ht_tree" model="ir.ui.view">
+            <field name="name">kt.khau.tru.thue.gtgt.ht.tree</field>
+            <field name="model">kt.khau.tru.thue.gtgt.ht</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="kt_id"/>
+                    <field name="dien_giai"/>
+                    <field name="tk_no_id"/>
+                    <field name="ma_tk_no"/>
+                    <field name="ten_tk_no"/>
+                    <field name="tk_co_id"/>
+                    <field name="ma_tk_co"/>
+                    <field name="ten_tk_co"/>
+                    <field name="so_tien" sum="Total"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_kt_thue_gtgt_ht_search" model="ir.ui.view">
+            <field name="name">kt.khau.tru.thue.gtgt.ht.search</field>
+            <field name="model">kt.khau.tru.thue.gtgt.ht</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="dien_giai"/>
+                    <field name="tk_no_id"/>
+                    <field name="tk_co_id"/>
+                    <field name="kt_id"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Chứng từ" name="group_by_kt_id" domain="[]" context="{'group_by': 'kt_id'}"/>
+                        <filter string="TK Nợ" name="group_by_tk_no" domain="[]" context="{'group_by': 'tk_no_id'}"/>
+                        <filter string="TK Có" name="group_by_tk_co" domain="[]" context="{'group_by': 'tk_co_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_kt_thue_gtgt_ht" model="ir.actions.act_window">
+            <field name="name">Chi tiết hạch toán</field>
+            <field name="res_model">kt.khau.tru.thue.gtgt.ht</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

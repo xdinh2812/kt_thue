@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="view_kt_thue_gtgt_form" model="ir.ui.view">
+        <field name="name">kt.khau.tru.thue.gtgt.form</field>
+        <field name="model">kt.khau.tru.thue.gtgt</field>
+        <field name="arch" type="xml">
+            <form string="Khấu trừ thuế">
+                <header>
+                    <button name="action_confirm"
+                            string="Xác nhận"
+                            type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('trang_thai', 'not in', ['nhap'])]}"/>
+                    <button name="action_draft"
+                            string="Nháp"
+                            type="object"
+                            attrs="{'invisible': [('trang_thai', 'not in', ['xac_nhan', 'huy'])]}"/>
+                    <button name="action_cancel"
+                            string="Huỷ"
+                            type="object"
+                            attrs="{'invisible': [('trang_thai', '=', 'huy')]}"/>
+                    <field name="trang_thai" widget="statusbar" statusbar_visible="nhap,xac_nhan,huy"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="so_ct" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="dien_giai"/>
+                            <field name="ky"/>
+                            <field name="nam"/>
+                            <field name="company_id" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="ngay_ht"/>
+                            <field name="ngay_ct"/>
+                            <field name="thue_gtgt_duoc_khau_tru"/>
+                            <field name="thue_gtgt_dau_ra"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Hạch toán">
+                            <field name="tt_ids" attrs="{'readonly': [('trang_thai', '!=', 'nhap')]}">
+                                <tree editable="bottom">
+                                    <field name="dien_giai"/>
+                                    <field name="tk_no_id"/>
+                                    <field name="ma_tk_no"/>
+                                    <field name="ten_tk_no"/>
+                                    <field name="tk_co_id"/>
+                                    <field name="ma_tk_co"/>
+                                    <field name="ten_tk_co"/>
+                                    <field name="so_tien" sum="Total"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+<!--                <div class="oe_chatter">-->
+<!--                    <field name="message_follower_ids"/>-->
+<!--                    <field name="activity_ids"/>-->
+<!--                    <field name="message_ids"/>-->
+<!--                </div>-->
+            </form>
+        </field>
+    </record>
+
+    <record id="view_kt_thue_gtgt_tree" model="ir.ui.view">
+        <field name="name">kt.khau.tru.thue.gtgt.tree</field>
+        <field name="model">kt.khau.tru.thue.gtgt</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="so_ct"/>
+                <field name="ngay_ht"/>
+                <field name="dien_giai"/>
+                <field name="ky"/>
+                <field name="nam"/>
+                <field name="thue_gtgt_duoc_khau_tru" sum="Total"/>
+                <field name="thue_gtgt_dau_ra" sum="Total"/>
+                <field name="trang_thai"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_kt_thue_gtgt" model="ir.actions.act_window">
+        <field name="name">Khấu trừ thuế GTGT</field>
+        <field name="res_model">kt.khau.tru.thue.gtgt</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    </data>
+</odoo>

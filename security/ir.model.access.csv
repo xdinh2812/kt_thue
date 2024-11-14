@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kt_thue_gtgt_user,kt.khau.tru.thue.gtgt.user,model_kt_khau_tru_thue_gtgt,base.group_user,1,1,1,1
+access_kt_thue_gtgt_ht_user,kt.khau.tru.thue.gtgt.ht.user,model_kt_khau_tru_thue_gtgt_ht,base.group_user,1,1,1,1

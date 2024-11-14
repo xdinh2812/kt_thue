@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_kt_thue_gtgt_root"
+            name="Khấu trừ thuế GTGT"
+            sequence="10"/>
+
+        <menuitem id="menu_kt_thue_gtgt"
+            name="Khấu trừ thuế GTGT"
+            parent="menu_kt_thue_gtgt_root"
+            action="action_kt_thue_gtgt"
+            sequence="1"/>
+        <menuitem id="menu_kt_thue_gtgt_ht"
+            name="Chi tiết hạch toán"
+            parent="menu_kt_thue_gtgt_root"
+            action="action_kt_thue_gtgt_ht"
+            sequence="2"/>
+    </data>
+</odoo>
