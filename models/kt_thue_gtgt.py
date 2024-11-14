@@ -105,8 +105,3 @@ class KtThueGtgt(models.Model):
     def action_cancel(self):
         for record in self:
             record.trang_thai = 'huy'
-
-    _sql_constraints = [
-        ('so_ct_company_uniq', 'unique(so_ct, company_id)',
-         'Số chứng từ phải là duy nhất cho mỗi công ty!')
-    ]
