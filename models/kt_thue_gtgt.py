@@ -17,7 +17,6 @@ class KtThueGtgt(models.Model):
         readonly=True,
         copy=False,
         default=_get_default_so_ct,
-        tracking=True
     )
 
     ky = fields.Selection([
@@ -37,13 +36,12 @@ class KtThueGtgt(models.Model):
         ('q2', 'Quý II'),
         ('q3', 'Quý III'),
         ('q4', 'Quý IV')
-    ], string='Kỳ', required=True, tracking=True)
+    ], string='Kỳ', required=True)
 
     nam = fields.Selection(
         selection='_get_nam_selection',
         string='Năm',
         required=True,
-        tracking=True
     )
 
     @api.model
@@ -55,25 +53,24 @@ class KtThueGtgt(models.Model):
         return years
 
     dien_giai = fields.Text('Diễn giải', tracking=True)
-    ngay_ht = fields.Date('Ngày hạch toán', default=fields.Date.context_today, tracking=True)
-    ngay_ct = fields.Date('Ngày chứng từ', default=fields.Date.context_today, tracking=True)
+    ngay_ht = fields.Date('Ngày hạch toán', default=fields.Date.context_today)
+    ngay_ct = fields.Date('Ngày chứng từ', default=fields.Date.context_today)
 
-    thue_gtgt_duoc_khau_tru = fields.Float('Thuế GTGT được khấu trừ', digits=(16, 2), tracking=True)
-    thue_gtgt_dau_ra = fields.Float('Thuế GTGT đầu ra', digits=(16, 2), tracking=True)
+    thue_gtgt_duoc_khau_tru = fields.Float('Thuế GTGT được khấu trừ', digits=(16, 2))
+    thue_gtgt_dau_ra = fields.Float('Thuế GTGT đầu ra', digits=(16, 2))
 
     company_id = fields.Many2one(
         'res.company',
         string='Đại học/Trường',
         required=True,
         default=lambda self: self.env.company,
-        tracking=True
     )
 
     trang_thai = fields.Selection([
         ('nhap', 'Nháp'),
         ('xac_nhan', 'Đã xác nhận'),
         ('huy', 'Huỷ')
-    ], string='Trạng thái', default='nhap', tracking=True)
+    ], string='Trạng thái', default='nhap')
 
     tt_ids = fields.One2many('kt.khau.tru.thue.gtgt.ht', 'kt_id', string='Hạch toán')
     move_id = fields.Many2one('account.move', string='Bút toán khấu trừ')
