@@ -82,7 +82,7 @@ class KtThueGtgt(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             if vals.get('so_ct', 'New') == 'New':
-                # Format: KTGT0001
+                # Format: KTT0001
                 sequence = self.env['ir.sequence'].next_by_code('kt.khau.tru.thue.sequence')
                 vals['so_ct'] = sequence
         return super().create(vals_list)
